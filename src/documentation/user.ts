@@ -1,4 +1,4 @@
-import { userAuthBody, userQuery, userResponse } from "./../validator/user";
+import { userQuery, userResponse } from "./../validator/user";
 import { RouteConfig } from "@asteasolutions/zod-to-openapi";
 import { userCreateBody } from "../validator/user";
 import { errorResponse } from "../validator/error";
@@ -28,29 +28,6 @@ const userDocument: RouteConfig[] = [
     },
   },
   {
-    method: "post",
-    path: "/userauth",
-    request: {
-      body: {
-        content: {
-          "application/json": {
-            schema: userAuthBody,
-          },
-        },
-      },
-    },
-    responses: {
-      200: {
-        description: "",
-        content: {
-          "application/json": {
-            schema: userResponse.openapi("UserResponse"),
-          },
-        },
-      },
-    },
-  },
-  {
     method: "delete",
     path: "/user",
     request: {
@@ -66,6 +43,11 @@ const userDocument: RouteConfig[] = [
         },
       },
     },
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
   },
 ];
 

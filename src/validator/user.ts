@@ -8,17 +8,14 @@ export const userCreateBody = z.object({
   password: z.string().min(3),
 });
 
-export const userAuthBody = z.object({
-  email: z.string().email().toLowerCase().trim(),
-  password: z.string().min(3),
-});
-
 export const userResponse = z.object({
   id: z.string().openapi({ title: "This ObjectId" }),
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
   __v: z.number(),
+  createdAt:z.string().datetime(),
+  updatedAt:z.string().datetime()
 });
 
 export const userQuery = z.object({

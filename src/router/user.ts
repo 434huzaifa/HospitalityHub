@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { authUser, deleteUser, insertUser } from "../handler/user";
+import {deleteUser, insertUser } from "../handler/user";
+import { JWTmiddlware } from "../middleware/jwt";
 
 const userRouter=Router()
 userRouter.post("/user",insertUser)
-userRouter.post("/userauth",authUser)
-userRouter.delete("/user",deleteUser)
+userRouter.delete("/user",JWTmiddlware,deleteUser)
 export default userRouter;

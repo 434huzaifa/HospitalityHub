@@ -5,10 +5,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
+import cookieParser from "cookie-parser";
 import { connect } from "mongoose";
 import userRouter from "./router/user";
 import { generator } from "./documentation";
-
+import authRouter from "./router/auth";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -44,8 +45,9 @@ app.use(
     ].join(" - ");
   })
 );
+app.use(cookieParser());
 app.use("/", userRouter);
-
+app.use("/",authRouter)
 app.get("/", (req, res) => {
   res.send("I AM RUNNING");
 });

@@ -4,11 +4,18 @@ import {
 } from "@asteasolutions/zod-to-openapi";
 import { OpenAPIObjectConfig } from "@asteasolutions/zod-to-openapi/dist/v3.0/openapi-generator";
 import userDocument from "./user";
+import authDocument from "./auth";
+const registry = new OpenAPIRegistry();
 
-export const registry = new OpenAPIRegistry();
+authDocument.map(x=>{
+  registry.registerPath(x);
+})
+
+
 userDocument.map((x) => {
   registry.registerPath(x);
 });
+
 
 const config: OpenAPIObjectConfig = {
   openapi: "3.0.0",
@@ -28,3 +35,14 @@ const config: OpenAPIObjectConfig = {
 export const generator = new OpenApiGeneratorV3(
   registry.definitions
 ).generateDocument(config);
+
+generator.components = {
+  ...generator.components,
+  securitySchemes: {
+    BearerAuth: {
+      type: "http",
+      scheme: "bearer",
+      bearerFormat: "JWT",
+    },
+  },
+};
