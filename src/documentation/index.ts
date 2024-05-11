@@ -6,6 +6,7 @@ import { OpenAPIObjectConfig } from "@asteasolutions/zod-to-openapi/dist/v3.0/op
 import userDocument from "./user";
 import authDocument from "./auth";
 import roomDocument from "./room";
+import bookingDocument from "./booking";
 const registry = new OpenAPIRegistry();
 
 authDocument.map((x) => {
@@ -17,6 +18,10 @@ userDocument.map((x) => {
 });
 
 roomDocument.map((x) => {
+  registry.registerPath(x);
+});
+
+bookingDocument.map((x) => {
   registry.registerPath(x);
 });
 

@@ -3,7 +3,6 @@ import { z } from "zod";
 import { errorHandler } from "../util";
 import { roomCreateBody, roomQuery, roomUpdateBody } from "../validator/room";
 import { Room } from "../schema/room";
-import { REFUSED } from "dns";
 
 type IRoomCreateBody = z.infer<typeof roomCreateBody>;
 type IRoomQuery = z.infer<typeof roomQuery>;
