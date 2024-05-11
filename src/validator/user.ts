@@ -1,5 +1,6 @@
 import { z } from "zod";
-
+import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
+extendZodWithOpenApi(z);
 export const userCreateBody=z.object({
     name: z.string().trim().min(3),
     email: z.string().email().toLowerCase().trim(),

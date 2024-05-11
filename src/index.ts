@@ -7,6 +7,7 @@ dotenv.config();
 import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
 import { connect } from "mongoose";
 import userRouter from "./router/user";
+import { generator } from "./documentation";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -44,7 +45,7 @@ app.use(
   })
 );
 
-app.use("/",userRouter)
+app.use("/", userRouter);
 
 app.get("/", (req, res) => {
   res.send("I AM RUNNING");
@@ -53,7 +54,7 @@ app.get("/", (req, res) => {
 const options: SwaggerUiOptions = {
   customSiteTitle: "HospitalityHub",
 };
-//   app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
 
 app.listen(port, () => {
   console.log(`I AM RUNNING ON http://localhost:${port}`);
