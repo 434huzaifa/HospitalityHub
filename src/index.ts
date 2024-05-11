@@ -2,12 +2,24 @@ import express, { NextFunction, Request, Response } from "express";
 import logger from "morgan";
 import dayjs from "dayjs";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
+import { connect } from "mongoose";
+import userRouter from "./router/user";
+
 const app = express();
 const port = process.env.PORT || 3000;
+
+const db_URL = process.env.DB_URL;
+if (db_URL) {
+  connect(db_URL);
+} else {
+  console.log("No db found");
+}
+
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
-
 const ParseJson = (req: Request, res: Response, next: NextFunction) => {
   const errorHandler = (err: Error | null) => {
     if (err instanceof Error) {
@@ -31,13 +43,16 @@ app.use(
     ].join(" - ");
   })
 );
+
+app.use("/",userRouter)
+
 app.get("/", (req, res) => {
   res.send("I AM RUNNING");
 });
 
 const options: SwaggerUiOptions = {
-    customSiteTitle: "HospitalityHub",
-  };
+  customSiteTitle: "HospitalityHub",
+};
 //   app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
 
 app.listen(port, () => {
