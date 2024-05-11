@@ -56,6 +56,7 @@ app.get("/", (req, res) => {
 
 const options: SwaggerUiOptions = {
   customSiteTitle: "HospitalityHub",
+  customfavIcon:"/hotel.png"
 };
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
 
