@@ -5,6 +5,7 @@ import { authResponse, userAuthBody } from "../validator/auth";
 const authDocument: RouteConfig[] = [
     {
         method: "post",
+        description:"Authorize and get token. [see this how to use token](https://www.youtube.com/watch?v=8wxprVcHB5w)",
         path: "/userauth",
         request: {
           body: {

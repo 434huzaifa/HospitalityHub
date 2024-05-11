@@ -38,7 +38,7 @@ const userDocument: RouteConfig[] = [
         description: "",
         content: {
           "application/json": {
-            schema: userResponse.openapi("UserResponse"),
+            schema: errorResponse.openapi("DeleteSuccess"),
           },
         },
       },

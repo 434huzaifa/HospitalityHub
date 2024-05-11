@@ -10,6 +10,7 @@ import { connect } from "mongoose";
 import userRouter from "./router/user";
 import { generator } from "./documentation";
 import authRouter from "./router/auth";
+import roomRouter from "./router/room";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -48,6 +49,7 @@ app.use(
 app.use(cookieParser());
 app.use("/", userRouter);
 app.use("/",authRouter)
+app.use("/",roomRouter)
 app.get("/", (req, res) => {
   res.send("I AM RUNNING");
 });

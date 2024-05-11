@@ -5,17 +5,20 @@ import {
 import { OpenAPIObjectConfig } from "@asteasolutions/zod-to-openapi/dist/v3.0/openapi-generator";
 import userDocument from "./user";
 import authDocument from "./auth";
+import roomDocument from "./room";
 const registry = new OpenAPIRegistry();
 
-authDocument.map(x=>{
+authDocument.map((x) => {
   registry.registerPath(x);
-})
-
+});
 
 userDocument.map((x) => {
   registry.registerPath(x);
 });
 
+roomDocument.map((x) => {
+  registry.registerPath(x);
+});
 
 const config: OpenAPIObjectConfig = {
   openapi: "3.0.0",
