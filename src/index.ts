@@ -44,7 +44,6 @@ app.use(
     ].join(" - ");
   })
 );
-
 app.use("/", userRouter);
 
 app.get("/", (req, res) => {
