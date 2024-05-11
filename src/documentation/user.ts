@@ -1,13 +1,12 @@
-import { userResponse } from "./../validator/user";
+import { userAuthBody, userQuery, userResponse } from "./../validator/user";
 import { RouteConfig } from "@asteasolutions/zod-to-openapi";
 import { userCreateBody } from "../validator/user";
 import { errorResponse } from "../validator/error";
 
-export const userDocument: RouteConfig[] = [
+const userDocument: RouteConfig[] = [
   {
     method: "post",
     path: "/user",
-    tags: ["User"],
     request: {
       body: {
         content: {
@@ -26,30 +25,78 @@ export const userDocument: RouteConfig[] = [
           },
         },
       },
-      404: {
-        description: "",
+    },
+  },
+  {
+    method: "post",
+    path: "/userauth",
+    request: {
+      body: {
         content: {
           "application/json": {
-            schema: errorResponse.openapi("ErrorResponse"),
+            schema: userAuthBody,
           },
         },
       },
-      400: {
+    },
+    responses: {
+      200: {
         description: "",
         content: {
           "application/json": {
-            schema: errorResponse.openapi("ErrorResponse"),
+            schema: userResponse.openapi("UserResponse"),
           },
         },
       },
-      500: {
+    },
+  },
+  {
+    method: "delete",
+    path: "/user",
+    request: {
+      query: userQuery,
+    },
+    responses: {
+      200: {
         description: "",
         content: {
           "application/json": {
-            schema: errorResponse.openapi("ErrorResponse"),
+            schema: userResponse.openapi("UserResponse"),
           },
         },
       },
     },
   },
 ];
+
+userDocument.forEach((x) => {
+  x.tags = ["User"];
+  x.responses = {
+    ...x.responses,
+    404: {
+      description: "",
+      content: {
+        "application/json": {
+          schema: errorResponse.openapi("ErrorResponse"),
+        },
+      },
+    },
+    400: {
+      description: "",
+      content: {
+        "application/json": {
+          schema: errorResponse.openapi("ErrorResponse"),
+        },
+      },
+    },
+    500: {
+      description: "",
+      content: {
+        "application/json": {
+          schema: errorResponse.openapi("ErrorResponse"),
+        },
+      },
+    },
+  };
+});
+export default userDocument;

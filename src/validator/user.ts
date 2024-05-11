@@ -24,7 +24,7 @@ export const userResponse = z.object({
 export const userQuery = z.object({
   id: z.string().refine(
     (value) => {
-      // const regex = /^[0-9a-fA-F]{24}$/;
+      // const regex = /^[0-9a-fA-F]{24}$/; // ObjectId validator using RegEx
       // return regex.test(value);
       return isValidObjectId(value)
     },

@@ -2,8 +2,8 @@ import {
   OpenAPIRegistry,
   OpenApiGeneratorV3,
 } from "@asteasolutions/zod-to-openapi";
-import { userDocument } from "./user";
 import { OpenAPIObjectConfig } from "@asteasolutions/zod-to-openapi/dist/v3.0/openapi-generator";
+import userDocument from "./user";
 
 export const registry = new OpenAPIRegistry();
 userDocument.map((x) => {
@@ -15,12 +15,12 @@ const config: OpenAPIObjectConfig = {
   info: {
     title: "HospitalityHub",
     version: "1.0.0",
-    description: "A simple API EduSphere.",
+    description: "A simple API for HospitalityHub.",
   },
   servers: [
     {
       url: "http://localhost:3000",
-      description: "If you run you server at localhost:3000",
+      description: "If you run your local server at localhost:3000",
     },
   ],
 };
