@@ -2,7 +2,7 @@
 
 A simple hotel management backend
 
-Live Server: (https://hospitalityhub.onrender.com/)[https://hospitalityhub.onrender.com/]
+Live Server: [https://hospitalityhub.onrender.com/](https://hospitalityhub.onrender.com/)
 
 
 ### To run local (without docker)
