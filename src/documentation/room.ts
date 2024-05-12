@@ -35,13 +35,7 @@ const roomDocument: RouteConfig[] = [
     method: "get",
     path: "/room",
     request: {
-      body: {
-        content: {
-          "application/json": {
-            schema: roomUpdateBody.openapi("RoomUpdateBody"),
-          },
-        },
-      },
+      query:roomQuery.openapi("RoomQuery")
     },
     responses: {
       201: {
@@ -73,6 +67,13 @@ const roomDocument: RouteConfig[] = [
     path: "/room",
     request: {
       query: roomQuery.openapi("RoomQuery"),
+      body: {
+        content: {
+          "application/json": {
+            schema: roomUpdateBody.openapi("RoomUpdateBody"),
+          },
+        },
+      }
     },
     responses: {
       201: {

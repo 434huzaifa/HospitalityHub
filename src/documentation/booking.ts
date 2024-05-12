@@ -35,13 +35,7 @@ import {
       method: "get",
       path: "/booking",
       request: {
-        body: {
-          content: {
-            "application/json": {
-              schema: bookingUpdateBody.openapi("BookingUpdateBody"),
-            },
-          },
-        },
+        query:bookingQuery.openapi("bookingQuery")
       },
       responses: {
         201: {
@@ -73,6 +67,13 @@ import {
       path: "/booking",
       request: {
         query: bookingQuery.openapi("RoomQuery"),
+        body: {
+          content: {
+            "application/json": {
+              schema: bookingUpdateBody.openapi("BookingUpdateBody"),
+            },
+          },
+        }
       },
       responses: {
         201: {

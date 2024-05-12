@@ -18,7 +18,7 @@ export async function insertBooking(
 ) {
   try {
     await bookingCreateBody.parseAsync(req.body);
-    const booking = new Booking(req.body);
+    const booking = new Booking({...req.body,bookedBy:req.cookies._id});
     const result = await booking.save();
     res.status(201).send(result);
   } catch (error) {

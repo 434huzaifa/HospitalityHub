@@ -12,6 +12,7 @@ import { generator } from "./documentation";
 import authRouter from "./router/auth";
 import roomRouter from "./router/room";
 import { User } from "./schema/user";
+import bookingRouter from "./router/booking";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -65,6 +66,7 @@ app.use(cookieParser());
 app.use("/", userRouter);
 app.use("/", authRouter);
 app.use("/", roomRouter);
+app.use("/", bookingRouter);
 app.get("/", (req, res) => {
   res.send("I AM RUNNING");
 });
