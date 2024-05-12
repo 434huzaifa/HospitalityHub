@@ -13,6 +13,8 @@ import authRouter from "./router/auth";
 import roomRouter from "./router/room";
 import { User } from "./schema/user";
 import bookingRouter from "./router/booking";
+import { Room } from "./schema/room";
+const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -27,6 +29,12 @@ if (db_URL) {
           name: "mdHuzaifa",
         });
         await user.save();
+        const room = new Room({
+          name: "Ab-291",
+          capacity: 3,
+          isAc: false,
+        });
+        await room.save();
         console.log("Database Connected");
       } catch (error) {}
     })
@@ -68,7 +76,7 @@ app.use("/", authRouter);
 app.use("/", roomRouter);
 app.use("/", bookingRouter);
 app.get("/", (req, res) => {
-  res.send("I AM RUNNING");
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
 const options: SwaggerUiOptions = {
