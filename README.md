@@ -4,6 +4,8 @@ A simple hotel management backend
 
 Live Server: [https://hospitalityhub.onrender.com/](https://hospitalityhub.onrender.com/)
 
+Live Server Swagger Doc: [https://hospitalityhub.onrender.com/docs/](https://hospitalityhub.onrender.com/docs/)
+
 
 ### To run local (without docker)
 
