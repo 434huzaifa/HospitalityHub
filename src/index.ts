@@ -11,12 +11,27 @@ import userRouter from "./router/user";
 import { generator } from "./documentation";
 import authRouter from "./router/auth";
 import roomRouter from "./router/room";
+import { User } from "./schema/user";
 const app = express();
 const port = process.env.PORT || 3000;
 
 const db_URL = process.env.DB_URL;
 if (db_URL) {
-  connect(db_URL);
+  connect(db_URL, { dbName: "HospitalityHub" })
+    .then(async (x) => {
+      try {
+        const user = new User({
+          email: "saadhuzaifa@gmail.com",
+          password: "saad123",
+          name: "mdHuzaifa",
+        });
+        await user.save();
+        console.log("Database Connected");
+      } catch (error) {}
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 } else {
   console.log("No db found");
 }
@@ -48,15 +63,15 @@ app.use(
 );
 app.use(cookieParser());
 app.use("/", userRouter);
-app.use("/",authRouter)
-app.use("/",roomRouter)
+app.use("/", authRouter);
+app.use("/", roomRouter);
 app.get("/", (req, res) => {
   res.send("I AM RUNNING");
 });
 
 const options: SwaggerUiOptions = {
   customSiteTitle: "HospitalityHub",
-  customfavIcon:"/hotel.png"
+  customfavIcon: "/hotel.png",
 };
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
 

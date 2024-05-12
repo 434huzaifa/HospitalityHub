@@ -1,21 +1,23 @@
-FROM node:16
+    FROM node:20
 
-WORKDIR /app
+    WORKDIR /app
 
-COPY package*.json ./
+    COPY package*.json ./
 
-RUN npm install
+    RUN npm install
 
-COPY src ./src
+    COPY src ./src
+        
+    COPY public ./public
 
-COPY tsconfig.json ./
+    COPY tsconfig.json ./
 
-RUN npm run build
+    RUN npm run build
 
-ENV DB_URL=mongodb+srv://434darkmaster:RgcRm54Gix9NnIMH@cluster0.l2bfny4.mongodb.net/HospitalityHub?retryWrites=true&w=majority&appName=Cluster0
+    ENV TOKEN=trbjhJ5qDQdhovRHxaAasz8esSSGMAtGizEAeuAep55zwsPL4nPePr5iAdwUPTVjLfiLZqrNfejwC9VPoWUvg9QBvZahes7NefBAt7tRzUcPFWPHuCR88A6EshmkEWt3
 
-ENV TOKEN=trbjhJ5qDQdhovRHxaAasz8esSSGMAtGizEAeuAep55zwsPL4nPePr5iAdwUPTVjLfiLZqrNfejwC9VPoWUvg9QBvZahes7NefBAt7tRzUcPFWPHuCR88A6EshmkEWt3
+    EXPOSE 3000
 
-EXPOSE 3000
+    RUN rm -rf src
 
-CMD ["node", "dist/index.js"]
+    CMD ["node", "dist/index.js"]
