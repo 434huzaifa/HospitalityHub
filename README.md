@@ -35,7 +35,7 @@ cd HospitalityHub
 ```
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 go to **localhost:3000/docs** to access swaggerUI doc.
