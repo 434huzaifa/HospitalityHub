@@ -34,9 +34,13 @@ const config: OpenAPIObjectConfig = {
   },
   servers: [
     {
+      url:"https://hospitalityhub.onrender.com",
+      description: "Render live server. Its slow",
+    },
+    {
       url: "http://localhost:3000",
       description: "If you run your local server at localhost:3000",
-    },
+    }
   ],
 };
 
