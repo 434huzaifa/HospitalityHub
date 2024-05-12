@@ -1,6 +1,6 @@
 # HospitalityHub
 
-A simple hotelmanagement backend
+A simple hotel management backend
 
 ### To run local (without docker)
 
@@ -12,7 +12,7 @@ git clone https://github.com/434huzaifa/HospitalityHub
 cd HospitalityHub
 ```
 
-set `.env`. look `.env.exmple` for the variable
+set `.env`. look `.env.example` for the variable
 
 ```
 npm i
